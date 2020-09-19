@@ -134,20 +134,26 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   }
 
   Widget categories() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CategoryIcon(
-          title: 'Vegetables',
-          isSelected: true,
-        ),
-        CategoryIcon(
-          title: 'Fruits',
-        ),
-        CategoryIcon(
-          title: 'Beans',
-        ),
-      ],
+    return Center(
+      child: Container(
+        height: 50,
+        child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          children: [
+            CategoryIcon(
+              title: 'Vegetables',
+              isSelected: true,
+            ),
+            CategoryIcon(
+              title: 'Fruits',
+            ),
+            CategoryIcon(
+              title: 'Beans',
+            ),
+          ],
+        )
+      ),
     );
   }
 
@@ -156,6 +162,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       alignment: Alignment.center,
       height: 210,
       child: ListView.builder(
+        shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemCount: controller.ingredientsList.length,
         itemBuilder: (BuildContext context, int index) {
@@ -197,6 +204,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
           Container(
             height: 300,
             child: ListView.builder(
+              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: controller.recipesList.length,
               itemBuilder: (BuildContext context, int index) {

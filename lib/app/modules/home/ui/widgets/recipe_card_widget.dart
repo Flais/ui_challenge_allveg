@@ -25,7 +25,6 @@ class RecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 275,
       width: 175,
       padding: EdgeInsets.all(10),
       margin: EdgeInsets.symmetric(horizontal: 10),
@@ -36,7 +35,7 @@ class RecipeCard extends StatelessWidget {
       child: Column(
         children: [
           _image(),
-          SizedBox(height: 5),
+          SizedBox(height: 15),
           _rating(),
           SizedBox(height: 15),
           Expanded(

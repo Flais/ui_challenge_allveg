@@ -16,6 +16,7 @@ class CategoryIcon extends StatelessWidget {
       height: 45,
       width: 110,
       alignment: Alignment.center,
+      margin: EdgeInsets.symmetric(horizontal: 8),
       padding: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
       decoration: BoxDecoration(
         color: this._isSelected ? Color(0xFF5FC15E) : Colors.white,
