@@ -23,8 +23,8 @@ class Ingredient extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 5),
         margin: EdgeInsets.symmetric(horizontal: 15),
-        height: 210,
-        width: 110,
+        height: 195,
+        width: 125,
         decoration: BoxDecoration(
           color: this._isSelected ? Color(0xFFF76D47) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),

@@ -105,6 +105,9 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          MediaQuery.of(context).orientation == Orientation.landscape
+              ? SizedBox(height: 35)
+              : Container(),
           searchTextField(),
           SizedBox(height: 40),
           Padding(
@@ -151,7 +154,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   ingredientsListView() {
     return Container(
       alignment: Alignment.center,
-      height: 220,
+      height: 210,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: controller.ingredientsList.length,
@@ -160,9 +163,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             title: controller.ingredientsList[index].name,
             imagePath: controller.ingredientsList[index].imagePath,
             isSelected: controller.ingredientsList[index].isSelected,
-            onTap: () {
-
-            },
+            onTap: () {},
           );
         },
       ),
