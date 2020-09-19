@@ -110,10 +110,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               : Container(),
           searchTextField(),
           SizedBox(height: 40),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: categories(),
-          ),
+          categories(),
           SizedBox(height: 25),
           ingredientsListView(),
           SizedBox(height: 50),
@@ -136,24 +133,23 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   Widget categories() {
     return Center(
       child: Container(
-        height: 50,
-        child: ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          children: [
-            CategoryIcon(
-              title: 'Vegetables',
-              isSelected: true,
-            ),
-            CategoryIcon(
-              title: 'Fruits',
-            ),
-            CategoryIcon(
-              title: 'Beans',
-            ),
-          ],
-        )
-      ),
+          height: 50,
+          child: ListView(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            children: [
+              CategoryIcon(
+                title: 'Vegetables',
+                isSelected: true,
+              ),
+              CategoryIcon(
+                title: 'Fruits',
+              ),
+              CategoryIcon(
+                title: 'Beans',
+              ),
+            ],
+          )),
     );
   }
 
@@ -218,7 +214,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 );
               },
             ),
-          )
+          ),
         ],
       ),
     );
