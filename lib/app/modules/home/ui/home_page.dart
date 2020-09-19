@@ -84,7 +84,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   style: TextStyle(fontSize: 22),
                 ),
                 Text(
-                  'Sara',
+                  'João',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
