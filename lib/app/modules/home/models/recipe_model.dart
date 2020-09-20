@@ -45,4 +45,16 @@ class RecipeModel {
   setRating(double value) {
     this._rating = value;
   }
+
+  @override
+  factory RecipeModel.fromJson(Map<String, dynamic> json) {
+    return RecipeModel(
+      name: json['name'],
+      imagePath: json['imagePath'],
+      rating: json['rating'],
+      calories: json['calories'],
+      isBookmark: json['isBookmark'],
+      isFavorite: json['isFavorite'],
+    );
+  }
 }

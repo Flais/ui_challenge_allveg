@@ -8,7 +8,7 @@ class IngredientModel {
   IngredientModel(
       {@required String name,
       @required String imagePath,
-      @required bool isSelected})
+      bool isSelected = false})
       : this._name = name,
         this._imagePath = imagePath,
         this._isSelected = isSelected;
@@ -21,5 +21,12 @@ class IngredientModel {
 
   void setIsSelected(bool value) {
     this._isSelected = value;
+  }
+
+  factory IngredientModel.fromJson(Map<String, dynamic> json) {
+    return IngredientModel(
+      name: json['name'],
+      imagePath: json['imagePath'],
+    );
   }
 }

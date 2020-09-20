@@ -2,23 +2,20 @@ final ingredientsFixture = <Map<String, dynamic>>[
   {
     'name': 'Celery',
     'imagePath': 'assets/images/celery.png',
-    'isSelected': true,
   },
   {
     'name': 'Eggplant',
     'imagePath': 'assets/images/eggplant.png',
-    'isSelected': false,
   },
   {
     'name': 'Potato',
     'imagePath': 'assets/images/potato.png',
-    'isSelected': false,
   }
 ];
 
 final recipesFixture = <Map<String, dynamic>>[
   {
-    'name': 'Tofu With Baby Bok Choy sad s dad as',
+    'name': 'Tofu With Baby Bok Choy',
     'imagePath':
         'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/vegetarian-tofu-recipes-1547155036.jpg',
     'rating': 4.95,
@@ -29,7 +26,7 @@ final recipesFixture = <Map<String, dynamic>>[
   {
     'name': 'Pesto salmon parcels with green veg',
     'imagePath':
-    'https://realfood.tesco.com/media/images/RFO-1400x919-PestoSalmon-a8ae5a48-2c66-4a9f-a482-eacd64487e05-0-1400x919.jpg',
+        'https://realfood.tesco.com/media/images/RFO-1400x919-PestoSalmon-a8ae5a48-2c66-4a9f-a482-eacd64487e05-0-1400x919.jpg',
     'rating': 4.43,
     'calories': 780,
     'isBookmark': true,
@@ -53,5 +50,16 @@ final recipesFixture = <Map<String, dynamic>>[
     'isBookmark': false,
     'isFavorite': false,
   },
+];
 
+final categoriesFixture = <Map<String, dynamic>>[
+  {
+    'name': 'Vegetables',
+  },
+  {
+    'name': 'Fruits',
+  },
+  {
+    'name': 'Beans',
+  },
 ];

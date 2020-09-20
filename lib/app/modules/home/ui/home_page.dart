@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ui_challenge_allveg/app/fixtures/fixtures.dart';
 import 'package:ui_challenge_allveg/app/modules/home/ui/widgets/category_icon_widget.dart';
@@ -21,6 +22,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     controller.loadAppInfo(
+      categories: categoriesFixture,
       ingredients: ingredientsFixture,
       recipes: recipesFixture,
     );
@@ -133,23 +135,24 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   Widget categories() {
     return Center(
       child: Container(
-          height: 50,
-          child: ListView(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            children: [
-              CategoryIcon(
-                title: 'Vegetables',
-                isSelected: true,
-              ),
-              CategoryIcon(
-                title: 'Fruits',
-              ),
-              CategoryIcon(
-                title: 'Beans',
-              ),
-            ],
-          )),
+        height: 50,
+        child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          itemCount: controller.categoriesList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Observer(builder: (_) {
+              return CategoryIcon(
+                title: controller.categoriesList[index].name,
+                isSelected: controller.currentCategoryIndex == index,
+                onTap: () {
+                  controller.setCurrentCategoryIndex(index);
+                },
+              );
+            });
+          },
+        ),
+      ),
     );
   }
 
@@ -162,12 +165,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         scrollDirection: Axis.horizontal,
         itemCount: controller.ingredientsList.length,
         itemBuilder: (BuildContext context, int index) {
-          return Ingredient(
-            title: controller.ingredientsList[index].name,
-            imagePath: controller.ingredientsList[index].imagePath,
-            isSelected: controller.ingredientsList[index].isSelected,
-            onTap: () {},
-          );
+          return Observer(builder: (_) {
+            return Ingredient(
+              title: controller.ingredientsList[index].name,
+              imagePath: controller.ingredientsList[index].imagePath,
+              isSelected: controller.currentIngredientIndex == index,
+              onTap: () {
+                controller.setCurrentIngredientIndex(index);
+              },
+            );
+          });
         },
       ),
     );
@@ -177,45 +184,51 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     return Container(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Popular Recipes',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      letterSpacing: 1.5),
-                ),
-                Text(
-                  'View All',
-                  style: TextStyle(fontSize: 14, letterSpacing: 1.5),
-                ),
-              ],
-            ),
-          ),
+          popularRecipesHeaderMenu(),
           SizedBox(height: 30),
-          Container(
-            height: 300,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: controller.recipesList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return RecipeCard(
-                  recipeName: controller.recipesList[index].name,
-                  recipeImagePath: controller.recipesList[index].imagePath,
-                  recipeRating: controller.recipesList[index].rating,
-                  recipeCalories: controller.recipesList[index].calories,
-                  isBookmark: controller.recipesList[index].isBookmark,
-                  isFavorite: controller.recipesList[index].isFavorite,
-                );
-              },
-            ),
+          popularRecipesListView(),
+        ],
+      ),
+    );
+  }
+
+  Widget popularRecipesHeaderMenu() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Popular Recipes',
+            style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 1.5),
+          ),
+          Text(
+            'View All',
+            style: TextStyle(fontSize: 14, letterSpacing: 1.5),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget popularRecipesListView() {
+    return Container(
+      height: 300,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: controller.recipesList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return RecipeCard(
+            recipeName: controller.recipesList[index].name,
+            recipeImagePath: controller.recipesList[index].imagePath,
+            recipeRating: controller.recipesList[index].rating,
+            recipeCalories: controller.recipesList[index].calories,
+            isBookmark: controller.recipesList[index].isBookmark,
+            isFavorite: controller.recipesList[index].isFavorite,
+          );
+        },
       ),
     );
   }
